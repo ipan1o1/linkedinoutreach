@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LinkedIn Outreach Personalizer – Stop Spammy Cold Outreach</title>
+  <meta name="description" content="AI personalizes LinkedIn DMs & InMail using public profile context. Join the beta or lock in the $79/mo early‑bird price." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;           /* slate-900 */
+      --panel: #0b1227;        /* deep panel */
+      --text: #0b1227;         /* used on light */
+      --ink: #0a0f1c;          /* heading on light */
+      --muted: #5b657a;
+      --light: #ffffff;
+      --brand: #1f6feb;        /* blue */
+      --brand-ink: #0b3a8c;
+      --accent: #0ea5e9;       /* sky */
+      --ok: #22c55e;
+      --shadow: 0 10px 30px rgba(15, 23, 42, .15);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;color:var(--text);line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    .container{max-width:var(--maxw);margin-inline:auto;padding:24px}
+    header{position:sticky;top:0;z-index:20;background:rgba(248,250,252,.75);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #e6eaf2}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;color:var(--ink)}
+    .tag{font-size:12px;padding:4px 8px;border-radius:999px;background:#e7f0ff;color:#1149b2;font-weight:600}
+    .navlinks{display:flex;gap:20px}
+    .navlinks a{color:#334155;font-weight:600}
+
+    /* Hero / Problem */
+    .hero{padding:72px 24px 32px;background:linear-gradient(180deg,#ffffff 0%, #f8fbff 70%, #f2f6ff 100%);border-bottom:1px solid #e6eaf2}
+    .h-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+    .h-title{font-size:44px;line-height:1.1;margin:0 0 16px;font-weight:800;color:#0b1227}
+    .h-sub{font-size:18px;color:#475569;margin:0 0 28px}
+    .pills{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 28px}
+    .pill{background:#eef2ff;color:#3730a3;border:1px solid #dbe3fd;padding:6px 10px;border-radius:999px;font-weight:600;font-size:12px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid transparent;font-weight:700}
+    .btn.primary{background:var(--brand);color:#fff;box-shadow:var(--shadow)}
+    .btn.primary:hover{background:#1b61d4}
+    .btn.ghost{background:#fff;border-color:#e2e8f0;color:#0f172a}
+    .btn.ghost:hover{border-color:#cbd5e1}
+
+    /* Solution */
+    section{padding:64px 24px}
+    h2{font-size:32px;line-height:1.2;margin:0 0 12px;color:#0b1227}
+    .muted{color:#64748b}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .card{background:#ffffff;border:1px solid #e7ecf5;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 8px;font-size:18px}
+
+    /* Mockup */
+    .mock-wrap{background:#0b1227;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow);color:#cbd5e1}
+    .device{background:#0e162e;border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.08)}
+    .chrome{height:28px;border-radius:10px;background:linear-gradient(90deg,#1f2937,#0f172a);display:flex;align-items:center;gap:8px;padding:0 12px}
+    .dot{width:10px;height:10px;border-radius:999px;background:#334155}
+    .screen{background:linear-gradient(180deg,#0e162e 0%, #0b1227 100%);border:1px solid rgba(255,255,255,.05);border-radius:10px;margin-top:12px;padding:18px}
+    /* Abstract UI blocks */
+    .row{height:12px;background:rgba(255,255,255,.12);border-radius:6px;margin:10px 0}
+    .row.w60{width:60%}
+    .row.w40{width:40%}
+    .row.w80{width:80%}
+    .row.w30{width:30%}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:start}
+    .panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px}
+    .caption{font-size:12px;color:#8da2c0;margin-top:10px}
+
+    /* Beta Form */
+    .form{background:#ffffff;border:1px solid #e7ecf5;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow)}
+    .form label{display:block;font-weight:600;margin:8px 0 6px;color:#0b1227}
+    .form input, .form textarea{width:100%;padding:14px 14px;border:1px solid #dbe3fd;border-radius:12px;font-size:16px;background:#fbfdff}
+    .form input:focus,.form textarea:focus{outline:none;border-color:#93c5fd;box-shadow:0 0 0 4px rgba(147,197,253,.35)}
+
+    /* CTA Pricing */
+    .cta{background:linear-gradient(180deg,#f0f7ff 0%, #e7f0ff 100%);border:1px solid #dbeafe;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow)}
+    .price{font-size:42px;font-weight:800;margin:0;color:#0b1227}
+    .strike{color:#94a3b8;text-decoration:line-through;font-weight:700}
+
+    footer{padding:32px 24px;color:#64748b;border-top:1px solid #e7ecf5;background:#ffffff}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .h-grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .h-title{font-size:36px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">LinkedIn Outreach Personalizer <span class="tag">Beta</span></div>
+      <nav class="navlinks">
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#mockup">Mockup</a>
+        <a href="#beta">Join Beta</a>
+        <a href="#prepay">Pre‑pay</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO / PROBLEM -->
+  <section id="problem" class="hero">
+    <div class="container h-grid">
+      <div>
+        <h1 class="h-title">Cold outreach is spammy — and it’s killing your response rates.</h1>
+        <p class="h-sub">Generic LinkedIn messages get ignored. Prospects can spot a copy‑paste pitch instantly, leaving sales reps, recruiters, and founders stuck with low conversions.</p>
+        <div class="pills">
+          <span class="pill">B2B Sales</span>
+          <span class="pill">Recruiters</span>
+          <span class="pill">Founders</span>
+        </div>
+        <div>
+          <a class="btn primary" href="#beta">Join the Beta</a>
+          <a class="btn ghost" href="#prepay">Lock Early‑Bird $79/mo</a>
+        </div>
+      </div>
+      <div>
+        <div class="mock-wrap" aria-hidden="true">
+          <div class="device">
+            <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="screen">
+              <div class="grid">
+                <div class="panel">
+                  <div class="row w60"></div>
+                  <div class="row w40"></div>
+                  <div class="row w80"></div>
+                  <div class="row w30"></div>
+                  <div class="row w60"></div>
+                </div>
+                <div class="panel">
+                  <div class="row w80"></div>
+                  <div class="row w60"></div>
+                  <div class="row w40"></div>
+                  <div class="row w80"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="caption">Abstract mockup — no real product UI. Final design will evolve.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution">
+    <div class="container">
+      <h2>AI‑powered personalization for LinkedIn outreach</h2>
+      <p class="muted">We analyze your prospect’s <strong>public LinkedIn profile</strong> and instantly generate ultra‑personalized intros for DMs or InMail — crafted to sound human, relevant, and hard to ignore.</p>
+
+      <div class="features">
+        <div class="card">
+          <h3>1‑Click Personalization</h3>
+          <p class="muted">Drop a profile link. Get a usable intro in seconds — ready to paste into LinkedIn.</p>
+        </div>
+        <div class="card">
+          <h3>AI That Sounds Human</h3>
+          <p class="muted">No robotic templates. Contextual lines based on role, achievements, posts, and mutuals.</p>
+        </div>
+        <div class="card">
+          <h3>Boosted Replies</h3>
+          <p class="muted">Win more meetings with less manual research. Personalization at scale, not spam at scale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUP -->
+  <section id="mockup">
+    <div class="container">
+      <div class="mock-wrap" aria-hidden="true">
+        <div class="device">
+          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="screen">
+            <div class="grid">
+              <div class="panel">
+                <div class="row w60"></div>
+                <div class="row w40"></div>
+                <div class="row w80"></div>
+                <div class="row w30"></div>
+                <div class="row w60"></div>
+              </div>
+              <div class="panel">
+                <div class="row w80"></div>
+                <div class="row w60"></div>
+                <div class="row w40"></div>
+                <div class="row w80"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="caption">Screenshot mockup (placeholder) — replace later with final UI.</p>
+    </div>
+  </section>
+
+  <!-- BETA FORM -->
+  <section id="beta">
+    <div class="container" style="display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start">
+      <div>
+        <h2>Be first — join the beta</h2>
+        <p class="muted">Tell us who you outreach to and we’ll prioritize access. You’ll also get the $79/mo early‑bird pricing.</p>
+      </div>
+      <form class="form" method="post" action="#" onsubmit="event.preventDefault(); betaThanks();">
+        <label for="name">Name</label>
+        <input id="name" name="name" placeholder="Jane Doe" required>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" placeholder="jane@company.com" required>
+        <label for="aud">Who do you typically reach out to?</label>
+        <input id="aud" name="aud" placeholder="e.g., VPs of Sales in SaaS, senior data engineers, seed‑stage founders" />
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+          <button class="btn primary" type="submit">Request Beta Access</button>
+          <a class="btn ghost" href="#prepay">Skip the line — Pre‑pay</a>
+        </div>
+        <p id="beta-msg" class="muted" style="margin-top:12px"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- PRE‑PAY CTA -->
+  <section id="prepay">
+    <div class="container cta">
+      <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center">
+        <div>
+          <h2>Secure your early‑bird price</h2>
+          <p class="muted" style="margin:8px 0 14px">Lock in <strong>$79/mo</strong> now (<span class="strike">$149/mo</span> regular) — limited to the first 50 users. <br/>100% refundable until launch.</p>
+        </div>
+        <div style="text-align:right">
+          <!-- Replace the href with your live Stripe Checkout or Gumroad link -->
+          <a class="btn primary" style="min-width:260px;font-size:18px" href="https://checkout.stripe.com/pay/YOUR_CHECKOUT_LINK" target="_blank" rel="noopener">Pre‑Pay Now — $79/mo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> LinkedIn Outreach Personalizer</div>
+      <div style="display:flex;gap:16px"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function betaThanks(){
+      const el = document.getElementById('beta-msg');
+      el.textContent = 'Thanks! You\'re on the list — we\'ll email your invite soon.';
+    }
+  </script>
+</body>
+</html>
